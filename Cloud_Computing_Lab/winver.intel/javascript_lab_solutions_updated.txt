@@ -1,0 +1,924 @@
+LAB SESSION 1 — INTRODUCTION TO JAVASCRIPT
+
+// Q1. [Category: Basic Programming, Functions, Closures] Write basic JavaScript programs to explore normal programming constructs, functions, closures, etc.
+
+let a = 10;
+let b = 20;
+
+if (a < b) {
+    console.log("a is smaller than b");
+}
+
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+
+function add(x, y) {
+    return x + y;
+}
+
+console.log(add(5, 3));
+
+function outer() {
+    let count = 0;
+
+    return function inner() {
+        count++;
+        return count;
+    };
+}
+
+const counter = outer();
+console.log(counter());
+console.log(counter());
+console.log(counter());
+
+
+// Q2. [Category: HTML and JavaScript Integration] Display a welcome message using alert() in HTML.
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+    <script>
+        alert("Welcome to JavaScript!");
+    </script>
+</body>
+</html>
+
+
+// Q3. [Category: Literals, Identifiers, Variables] Use literals, identifiers, and variable declarations.
+
+let name = "Ravi";
+const age = 20;
+var marks = 85.5;
+
+console.log(name);
+console.log(age);
+console.log(marks);
+
+
+// Q4. [Category: Primitive Data Types] Declare and print all primitive data types.
+
+let str = "Hello";
+let num = 42;
+let bigIntValue = 12345678901234567890n;
+let bool = true;
+let undefinedValue;
+let nullValue = null;
+let symbolValue = Symbol("id");
+
+console.log(str, typeof str);
+console.log(num, typeof num);
+console.log(bigIntValue, typeof bigIntValue);
+console.log(bool, typeof bool);
+console.log(undefinedValue, typeof undefinedValue);
+console.log(nullValue, typeof nullValue);
+console.log(symbolValue, typeof symbolValue);
+
+
+// ============================================================================
+// LAB SESSION 2 — VARIABLES, SCOPE, DATA TYPES, OPERATORS, CONTROL FLOW
+// ============================================================================
+
+// Q1. [Category: Strings, Loops, Conditional Statements] Accept a number as input and insert hyphens (-) between every pair of consecutive even digits. Example: 025468 produces 0-254-6-8.
+
+let input = prompt("Enter a number:");
+let result = "";
+
+for (let i = 0; i < input.length; i++) {
+    result += input[i];
+
+    if (
+        i < input.length - 1 &&
+        Number(input[i]) % 2 === 0 &&
+        Number(input[i + 1]) % 2 === 0
+    ) {
+        result += "-";
+    }
+}
+
+console.log(result);
+alert(result);
+
+
+// Q2. [Category: Variable Scope] Demonstrate var, let, and const scopes.
+
+var x = 10;
+let y = 20;
+const z = 30;
+
+function testScope() {
+    var a = 1;
+    let b = 2;
+    const c = 3;
+
+    console.log(a, b, c);
+}
+
+testScope();
+
+if (true) {
+    var p = 100;
+    let q = 200;
+    const r = 300;
+}
+
+console.log(p);
+// console.log(q); // ReferenceError
+// console.log(r); // ReferenceError
+
+
+// Q3. [Category: Arithmetic Operators, Switch Statement] Create a calculator for +, -, *, /, %, **.
+
+let a = Number(prompt("Enter first number:"));
+let operator = prompt("Enter operator (+, -, *, /, %, **):");
+let b = Number(prompt("Enter second number:"));
+let result;
+
+switch (operator) {
+    case "+":
+        result = a + b;
+        break;
+    case "-":
+        result = a - b;
+        break;
+    case "*":
+        result = a * b;
+        break;
+    case "/":
+        result = a / b;
+        break;
+    case "%":
+        result = a % b;
+        break;
+    case "**":
+        result = a ** b;
+        break;
+    default:
+        result = "Invalid operator";
+}
+
+console.log(result);
+alert(result);
+
+
+// Q4. [Category: Data Types, typeof Operator] Use typeof to check data types.
+
+let a = "Hello";
+let b = 100;
+let c = true;
+let d;
+let e = null;
+let f = [1, 2, 3];
+let g = { name: "Ravi" };
+
+console.log(typeof a);
+console.log(typeof b);
+console.log(typeof c);
+console.log(typeof d);
+console.log(typeof e);
+console.log(typeof f);
+console.log(typeof g);
+
+
+// Q5. [Category: Conditional Statements, Modulus Operator] Check if a number is even or odd using if-else.
+
+let num = Number(prompt("Enter a number:"));
+
+if (num % 2 === 0) {
+    console.log("Even");
+} else {
+    console.log("Odd");
+}
+
+
+// Q6. [Category: Switch-Case, Grading System] Use switch-case for a grading system.
+
+let marks = Number(prompt("Enter marks (0-100):"));
+
+switch (true) {
+    case marks < 0 || marks > 100:
+        console.log("Invalid marks");
+        break;
+    case marks >= 90:
+        console.log("Grade A");
+        break;
+    case marks >= 80:
+        console.log("Grade B");
+        break;
+    case marks >= 70:
+        console.log("Grade C");
+        break;
+    case marks >= 60:
+        console.log("Grade D");
+        break;
+    default:
+        console.log("Grade F");
+}
+
+
+// Q7. [Category: Loops, Prime Numbers] Print prime numbers from 1 to 100 using a for loop.
+
+for (let num = 2; num <= 100; num++) {
+    let prime = true;
+
+    for (let i = 2; i * i <= num; i++) {
+        if (num % i === 0) {
+            prime = false;
+            break;
+        }
+    }
+
+    if (prime) {
+        console.log(num);
+    }
+}
+
+
+// ============================================================================
+// LAB SESSION 3 — OBJECTS AND OPERATIONS
+// ============================================================================
+
+// Q1. [Category: Objects, Property Access and Modification] Create and access object properties.
+
+let person = {
+    name: "Ravi",
+    age: 20,
+    city: "Jaipur"
+};
+
+console.log(person.name);
+console.log(person["age"]);
+
+person.age = 21;
+person.email = "ravi@example.com";
+
+console.log(person);
+
+
+// Q2. [Category: Object Accessors, Getters and Setters] Use accessors and mutators.
+
+let person = {
+    firstName: "Ravi",
+    lastName: "Kumar",
+
+    get fullName() {
+        return this.firstName + " " + this.lastName;
+    },
+
+    set fullName(value) {
+        let names = value.split(" ");
+        this.firstName = names[0];
+        this.lastName = names[1];
+    }
+};
+
+console.log(person.fullName);
+
+person.fullName = "Amit Sharma";
+
+console.log(person.firstName);
+console.log(person.lastName);
+
+
+// Q3. [Category: Objects, for-in Loop] Iterate object properties using for-in.
+
+let student = {
+    name: "Ravi",
+    age: 20,
+    marks: 85
+};
+
+for (let key in student) {
+    console.log(key + ": " + student[key]);
+}
+
+
+// Q4. [Category: Classes, Static Methods, Garbage Collection] Use static methods and nullify an object.
+
+class Calculator {
+    static add(a, b) {
+        return a + b;
+    }
+}
+
+console.log(Calculator.add(10, 20));
+
+let student = {
+    name: "Ravi",
+    marks: 85
+};
+
+console.log(student);
+
+student = null;
+
+console.log(student);
+
+
+// ============================================================================
+// LAB SESSION 4 — CLASSES, INHERITANCE, STATIC, GARBAGE COLLECTION
+// ============================================================================
+
+// Q1. [Category: Frontend Frameworks, UI Refresh] Write programs to perform UI refresh using a modern stack like Vue, Angular, React, etc.
+
+// React example
+
+import { useState } from "react";
+
+function App() {
+    const [count, setCount] = useState(0);
+
+    return (
+        <div>
+            <h2>Count: {count}</h2>
+            <button onClick={() => setCount(count + 1)}>
+                Refresh UI
+            </button>
+        </div>
+    );
+}
+
+export default App;
+
+
+// Q2. [Category: Data Persistence, Web Storage API] Write programs for data persistence using JavaScript using the chosen stack.
+
+let name = "Ravi";
+
+localStorage.setItem("studentName", name);
+
+let savedName = localStorage.getItem("studentName");
+
+console.log(savedName);
+
+localStorage.removeItem("studentName");
+
+
+// Q3. [Category: Classes, Constructors, Methods] Define Person class with method.
+
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    display() {
+        console.log("Name: " + this.name);
+        console.log("Age: " + this.age);
+    }
+}
+
+let person = new Person("Ravi", 20);
+
+person.display();
+
+
+// Q4. [Category: Inheritance, extends, super] Extend to Student class with marks.
+
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    display() {
+        console.log("Name: " + this.name);
+        console.log("Age: " + this.age);
+    }
+}
+
+class Student extends Person {
+    constructor(name, age, marks) {
+        super(name, age);
+        this.marks = marks;
+    }
+
+    displayMarks() {
+        console.log("Marks: " + this.marks);
+    }
+}
+
+let student = new Student("Ravi", 20, 90);
+
+student.display();
+student.displayMarks();
+
+
+// ============================================================================
+// LAB SESSION 5 — FUNCTIONS AND ARRAYS
+// ============================================================================
+
+// Q1. [Category: Functions, Arrays, slice()] Write a JavaScript function to get the last element of an array. Passing parameter n will return the last n elements of the array.
+
+function lastElements(arr, n = 1) {
+    if (n === 1) {
+        return arr[arr.length - 1];
+    }
+
+    return arr.slice(-n);
+}
+
+let arr = [10, 20, 30, 40, 50];
+
+console.log(lastElements(arr));
+console.log(lastElements(arr, 3));
+
+
+// Q2. [Category: Recursion, Factorial] Write a recursive factorial function.
+
+function factorial(n) {
+    if (n < 0 || !Number.isInteger(n)) {
+        return "Invalid input";
+    }
+
+    if (n === 0 || n === 1) {
+        return 1;
+    }
+
+    return n * factorial(n - 1);
+}
+
+console.log(factorial(5));
+
+
+// Q3. [Category: Arrays, Iteration, Accumulation] Sum elements of an array using a loop.
+
+let arr = [10, 20, 30, 40, 50];
+let sum = 0;
+
+for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+}
+
+console.log("Sum:", sum);
+
+
+// Q4. [Category: Arrays, Array Literals and Constructors] Declare an array using literal and constructor.
+
+let arr1 = [10, 20, 30, 40];
+
+let arr2 = new Array(10, 20, 30, 40);
+
+console.log(arr1);
+console.log(arr2);
+
+
+LAB SESSION 5 — FUNCTIONS AND ARRAYS (CONTINUED)
+
+// Q5. [Category: Arrays, Functions, Array Rotation] Implement a function that returns an updated array with r right rotations on an array of integers a.
+
+function rightRotate(a, r) {
+    if (a.length === 0) {
+        return [];
+    }
+
+    r = r % a.length;
+
+    if (r === 0) {
+        return a.slice();
+    }
+
+    return a.slice(-r).concat(a.slice(0, a.length - r));
+}
+
+let numbers = [1, 2, 3, 4, 5];
+
+console.log(rightRotate(numbers, 2));
+
+
+LAB SESSION 6 — ARRAY METHODS, SORTING, 2D ARRAYS
+
+// Q1. [Category: Arrays, Frequency Counting] Write a JavaScript program to find the most frequent item in an array.
+
+let items = [1, 2, 3, 2, 4, 2, 3, 3, 3];
+let frequency = {};
+let mostFrequent;
+let maxCount = 0;
+
+for (let item of items) {
+    frequency[item] = (frequency[item] || 0) + 1;
+
+    if (frequency[item] > maxCount) {
+        maxCount = frequency[item];
+        mostFrequent = item;
+    }
+}
+
+console.log("Most frequent item:", mostFrequent);
+console.log("Frequency:", maxCount);
+
+
+// Q2. [Category: Arrays, push(), User Input] Write a JavaScript program to add items to a blank array and display them.
+
+let items = [];
+let input;
+
+while (true) {
+    input = prompt("Enter an item (leave blank to finish):");
+
+    if (input === null || input.trim() === "") {
+        break;
+    }
+
+    items.push(input);
+}
+
+console.log(items);
+alert("Items: " + items.join(", "));
+
+
+// Q3. [Category: Arrays, Set, Case-Insensitive Comparison] Write a JavaScript program to remove duplicate items from an array, ignoring case sensitivity.
+
+let items = ["Apple", "banana", "APPLE", "Orange", "Banana", "grape"];
+let seen = new Set();
+let uniqueItems = items.filter(item => {
+    let normalized = item.toLowerCase();
+
+    if (seen.has(normalized)) {
+        return false;
+    }
+
+    seen.add(normalized);
+    return true;
+});
+
+console.log(uniqueItems);
+
+
+// Q4. [Category: Array Methods, map(), filter(), reduce()] Use map(), filter(), and reduce().
+
+let numbers = [1, 2, 3, 4, 5];
+
+let doubled = numbers.map(num => num * 2);
+let evenNumbers = numbers.filter(num => num % 2 === 0);
+let sum = numbers.reduce((total, num) => total + num, 0);
+
+console.log("Doubled:", doubled);
+console.log("Even numbers:", evenNumbers);
+console.log("Sum:", sum);
+
+
+// Q5. [Category: Arrays, Sorting, Comparison Function] Sort student marks in descending order.
+
+let marks = [75, 92, 68, 88, 95, 72];
+
+marks.sort((a, b) => b - a);
+
+console.log("Marks in descending order:", marks);
+
+
+// Q6. [Category: 2D Arrays, Matrices] Create and access a 2D array (matrix).
+
+let matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+
+console.log(matrix);
+console.log("Element at row 2, column 3:", matrix[1][2]);
+
+for (let i = 0; i < matrix.length; i++) {
+    console.log(matrix[i].join(" "));
+}
+
+
+LAB SESSION 7 — BOM: NAVIGATOR, LOCATION, HISTORY, SCREEN
+
+// Q1. [Category: JavaScript Objects, Object-Oriented Properties] Write a program to explore the object-oriented properties of JavaScript.
+
+let person = {
+    name: "Ravi",
+    age: 20,
+    greet() {
+        return "Hello, " + this.name;
+    }
+};
+
+console.log("Object:", person);
+console.log("Keys:", Object.keys(person));
+console.log("Values:", Object.values(person));
+console.log("Entries:", Object.entries(person));
+console.log(person.greet());
+
+
+// Q2. [Category: BOM, navigator Object] Display browser information using navigator.
+
+console.log("Browser user agent:", navigator.userAgent);
+console.log("Language:", navigator.language);
+console.log("Online:", navigator.onLine);
+console.log("Platform:", navigator.platform);
+console.log("Cookies enabled:", navigator.cookieEnabled);
+
+
+// Q3. [Category: BOM, location and history Objects] Change page using location.href and history.back().
+
+// Navigate to another page:
+location.href = "https://www.example.com";
+
+// To go back to the previous page, run this separately:
+// history.back();
+
+
+// Q4. [Category: BOM, screen Object] Display screen resolution using screen.
+
+console.log("Screen width:", screen.width);
+console.log("Screen height:", screen.height);
+console.log("Available width:", screen.availWidth);
+console.log("Available height:", screen.availHeight);
+console.log("Color depth:", screen.colorDepth);
+
+
+LAB SESSION 8 — DOM TREE, NODE, EVENT HANDLING
+
+// Q1. [Category: DOM, DOM Tree Manipulation] Write a program to manipulate the DOM.
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Manipulation</title>
+</head>
+<body>
+    <h2 id="heading">Original Heading</h2>
+    <p id="message">Original paragraph.</p>
+
+    <script>
+        document.getElementById("heading").textContent = "Updated Heading";
+        document.getElementById("message").style.color = "blue";
+    </script>
+</body>
+</html>
+
+
+// Q2. [Category: DOM Tree, Nodes, getElementById()] Build a DOM tree and use getElementById().
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Tree</title>
+</head>
+<body>
+    <div id="container">
+        <h2 id="title">Welcome</h2>
+        <p>This is a paragraph.</p>
+    </div>
+
+    <script>
+        let title = document.getElementById("title");
+        console.log(title.textContent);
+
+        let paragraph = document.createElement("p");
+        paragraph.textContent = "This paragraph was created using JavaScript.";
+
+        document.getElementById("container").appendChild(paragraph);
+    </script>
+</body>
+</html>
+
+
+// Q3. [Category: DOM, Tables, Dynamic Element Creation] Add a row to a table dynamically.
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Table Row</title>
+</head>
+<body>
+    <table id="studentTable" border="1">
+        <tr>
+            <th>Name</th>
+            <th>Marks</th>
+        </tr>
+    </table>
+
+    <button id="addRow">Add Row</button>
+
+    <script>
+        document.getElementById("addRow").addEventListener("click", function () {
+            let table = document.getElementById("studentTable");
+            let row = table.insertRow();
+
+            let nameCell = row.insertCell(0);
+            let marksCell = row.insertCell(1);
+
+            nameCell.textContent = "Ravi";
+            marksCell.textContent = "85";
+        });
+    </script>
+</body>
+</html>
+
+
+// Q4. [Category: DOM Events, addEventListener()] Change text on button click using addEventListener().
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Event</title>
+</head>
+<body>
+    <p id="message">Original text</p>
+    <button id="changeButton">Change Text</button>
+
+    <script>
+        document.getElementById("changeButton").addEventListener("click", function () {
+            document.getElementById("message").textContent = "The text has changed!";
+        });
+    </script>
+</body>
+</html>
+
+
+LAB SESSION 9 — BUILT-IN OBJECTS, ERROR HANDLING, COOKIES
+
+// Q1. [Category: Math Object, Random Numbers] Generate 5 random numbers with Math.
+
+for (let i = 0; i < 5; i++) {
+    console.log(Math.random());
+}
+
+
+// Q2. [Category: Form Validation, JavaScript] Validate form fields using JavaScript.
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+</head>
+<body>
+    <form id="studentForm">
+        <label>
+            Name:
+            <input type="text" id="name">
+        </label>
+        <br><br>
+
+        <label>
+            Email:
+            <input type="text" id="email">
+        </label>
+        <br><br>
+
+        <label>
+            Age:
+            <input type="number" id="age">
+        </label>
+        <br><br>
+
+        <button type="submit">Submit</button>
+        <p id="message"></p>
+    </form>
+
+    <script>
+        document.getElementById("studentForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let age = Number(document.getElementById("age").value);
+            let message = document.getElementById("message");
+
+            if (name === "" || email === "" || age <= 0) {
+                message.textContent = "Please enter a valid name, email, and age.";
+                return;
+            }
+
+            message.textContent = "Form submitted successfully.";
+        });
+    </script>
+</body>
+</html>
+
+
+// Q3. [Category: Boolean Object, Type Conversion] Use the Boolean object to evaluate truthy and falsy values and print conversion results using Boolean().
+
+let values = [0, 1, "", "Hello", null, undefined, NaN, false, true, [], {}];
+
+for (let value of values) {
+    console.log(value, "=>", Boolean(value));
+}
+
+
+// Q4. [Category: Symbol, Object Properties, for-in Loop] Create a function that returns a Symbol and use it to define a hidden property in an object. Demonstrate that it does not appear in a for-in loop.
+
+function createHiddenKey() {
+    return Symbol("hidden");
+}
+
+let hiddenKey = createHiddenKey();
+let person = {
+    name: "Ravi",
+    age: 20
+};
+
+person[hiddenKey] = "Secret value";
+
+for (let key in person) {
+    console.log(key);
+}
+
+console.log("Hidden property value:", person[hiddenKey]);
+console.log("Symbol properties:", Object.getOwnPropertySymbols(person));
+
+
+// Q5. [Category: Error Handling, Custom Error, Error Object] Throw and catch a custom error using try...catch and log the stack trace.
+
+class CustomError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "CustomError";
+    }
+}
+
+try {
+    throw new CustomError("Something went wrong.");
+} catch (error) {
+    console.log(error.name + ": " + error.message);
+    console.log(error.stack);
+}
+
+
+// Q6. [Category: Cookies, document.cookie] Set, retrieve, and delete cookies.
+
+// Set a cookie:
+document.cookie = "username=Ravi; max-age=3600; path=/; SameSite=Lax";
+
+// Retrieve cookies:
+console.log(document.cookie);
+
+// Delete the cookie by setting its max-age to zero:
+document.cookie = "username=; max-age=0; path=/; SameSite=Lax";
+
+
+LAB SESSION 10 — NUMBER OBJECT, MATH OBJECT, STRING OBJECT, REGEXP OBJECT, VALIDATION
+
+// Q1. [Category: Number Object, Math Object, Random OTP] Generate a 6-digit random OTP and format the result using toFixed() and parseInt().
+
+let otpNumber = parseInt((Math.random() * 900000 + 100000).toFixed(0), 10);
+let otp = String(otpNumber).padStart(6, "0");
+
+console.log("OTP:", otp);
+
+
+// Q2. [Category: Date Object, Date Formatting] Display today's date and time. Extract year, month, and day separately, and format the date as YYYY-MM-DD.
+
+let now = new Date();
+
+let year = now.getFullYear();
+let month = String(now.getMonth() + 1).padStart(2, "0");
+let day = String(now.getDate()).padStart(2, "0");
+
+console.log("Date:", year + "-" + month + "-" + day);
+console.log("Time:", now.toLocaleTimeString());
+console.log("Year:", year);
+console.log("Month:", month);
+console.log("Day:", day);
+
+
+// Q3. [Category: Map, Key-Value Pairs, Iteration] Create a Map with student names as keys and marks as values. Add, delete, check existence, and iterate using forEach.
+
+let studentMarks = new Map();
+
+studentMarks.set("Ravi", 85);
+studentMarks.set("Amit", 92);
+studentMarks.set("Priya", 78);
+
+console.log("Ravi exists:", studentMarks.has("Ravi"));
+
+studentMarks.set("Neha", 88);
+studentMarks.delete("Amit");
+
+studentMarks.forEach((marks, name) => {
+    console.log(name + ": " + marks);
+});
+
+console.log("Map size:", studentMarks.size);
+
+
+// Q4. [Category: RegExp, String Validation, test()] Take a string input and validate whether it is a valid email using RegExp. Demonstrate test() and pattern design.
+
+let email = prompt("Enter an email address:");
+let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if (emailPattern.test(email)) {
+    console.log("Valid email address");
+} else {
+    console.log("Invalid email address");
+}
+
+
+// Q5. [Category: Set, Duplicate Removal, Iteration] Create a Set of user input values. Add duplicates and demonstrate how Set avoids duplicate entries. Show size and iteration.
+
+let values = prompt("Enter values separated by commas:");
+let inputValues = values.split(",").map(value => value.trim());
+let uniqueValues = new Set(inputValues);
+
+console.log("Set size:", uniqueValues.size);
+
+uniqueValues.forEach(value => {
+    console.log(value);
+});

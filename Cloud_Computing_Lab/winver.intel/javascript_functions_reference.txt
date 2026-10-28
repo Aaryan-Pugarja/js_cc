@@ -1,0 +1,1111 @@
+JAVASCRIPT FUNCTION AND METHOD REFERENCE
+Format: Name / Definition / Example
+Examples are short and can be run in a browser console unless noted otherwise.
+
+============================================================
+1. OUTPUT, INPUT, AND TYPE CONVERSION
+============================================================
+
+console.log()
+Definition:
+Prints values to the browser console or Node.js terminal.
+Parameters: value1, value2, ... — values to display.
+Example:
+console.log("Hello", 10);
+
+alert()
+Definition:
+Displays a message in a browser alert dialog.
+Parameter: message — text or value to display.
+Example:
+alert("Welcome to JavaScript!");
+
+prompt()
+Definition:
+Displays a dialog asking the user for input. Returns a string, or null if cancelled.
+Parameters: message — prompt text; defaultValue — optional initial value.
+Example:
+let name = prompt("Enter your name:");
+console.log(name);
+
+Number()
+Definition:
+Converts a value to a number.
+Parameter: value — value to convert.
+Example:
+let age = Number("20"); // 20
+
+String()
+Definition:
+Converts a value to a string.
+Parameter: value — value to convert.
+Example:
+let text = String(123); // "123"
+
+Boolean()
+Definition:
+Converts a value to true or false using JavaScript truthiness rules.
+Parameter: value — value to convert.
+Example:
+console.log(Boolean(0));      // false
+console.log(Boolean("Hi"));   // true
+
+parseInt()
+Definition:
+Parses an integer from the beginning of a string.
+Parameters: string — value to parse; radix — optional number base, usually 10.
+Example:
+let n = parseInt("42px", 10); // 42
+
+typeof
+Definition:
+Operator that returns a string describing a value's type.
+Parameter: value or expression to check.
+Example:
+console.log(typeof 42); // "number"
+
+============================================================
+2. FUNCTIONS, SCOPE, AND RECURSION
+============================================================
+
+function declaration
+Definition:
+Defines a reusable block of code that can accept parameters and return a value.
+Parameters: listed inside parentheses; they receive the arguments passed during a call.
+Example:
+function add(a, b) {
+    return a + b;
+}
+console.log(add(2, 3)); // 5
+
+return
+Definition:
+Ends a function and optionally sends a result back to the caller.
+Parameter: optional value to return.
+Example:
+function square(n) {
+    return n * n;
+}
+
+Arrow function
+Definition:
+A shorter syntax for defining a function.
+Parameters: listed before =>; a single parameter may omit parentheses.
+Example:
+const double = n => n * 2;
+console.log(double(4)); // 8
+
+Function expression
+Definition:
+Stores a function in a variable.
+Parameters: defined in the function's parentheses.
+Example:
+const multiply = function (a, b) {
+    return a * b;
+};
+console.log(multiply(3, 4)); // 12
+
+Closure
+Definition:
+A function that retains access to variables from the scope where it was created.
+Parameters: depend on the inner function.
+Example:
+function makeCounter() {
+    let count = 0;
+    return function () {
+        count++;
+        return count;
+    };
+}
+const counter = makeCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+
+Recursive function
+Definition:
+A function that calls itself until a base condition is reached.
+Parameters: depend on the task.
+Example:
+function factorial(n) {
+    if (n <= 1) return 1;
+    return n * factorial(n - 1);
+}
+console.log(factorial(5)); // 120
+
+Default parameter
+Definition:
+Provides a value when an argument is omitted or undefined.
+Example:
+function greet(name = "Guest") {
+    return "Hello " + name;
+}
+console.log(greet()); // Hello Guest
+
+============================================================
+3. MATH AND NUMBER METHODS
+============================================================
+
+Math.random()
+Definition:
+Returns a pseudo-random number greater than or equal to 0 and less than 1.
+Parameters: none.
+Example:
+console.log(Math.random());
+
+Math.floor()
+Definition:
+Rounds a number down to the nearest integer.
+Parameter: number to round.
+Example:
+console.log(Math.floor(4.9)); // 4
+
+Math.ceil()
+Definition:
+Rounds a number up to the nearest integer.
+Parameter: number to round.
+Example:
+console.log(Math.ceil(4.1)); // 5
+
+Math.round()
+Definition:
+Rounds to the nearest integer.
+Parameter: number to round.
+Example:
+console.log(Math.round(4.6)); // 5
+
+Math.max()
+Definition:
+Returns the largest of the supplied numbers.
+Parameters: numbers to compare.
+Example:
+console.log(Math.max(4, 9, 2)); // 9
+
+Math.min()
+Definition:
+Returns the smallest of the supplied numbers.
+Parameters: numbers to compare.
+Example:
+console.log(Math.min(4, 9, 2)); // 2
+
+Math.pow()
+Definition:
+Returns a base raised to a power. The ** operator is also commonly used.
+Parameters: base, exponent.
+Example:
+console.log(Math.pow(2, 3)); // 8
+
+Number.prototype.toFixed()
+Definition:
+Formats a number with a specified number of digits after the decimal point; returns a string.
+Parameter: digits — number of decimal places (0–100; commonly 0–20).
+Example:
+console.log((12.345).toFixed(2)); // "12.35"
+
+Number.isInteger()
+Definition:
+Checks whether a value is an integer.
+Parameter: value to check.
+Example:
+console.log(Number.isInteger(5)); // true
+console.log(Number.isInteger(5.2)); // false
+
+============================================================
+4. STRING METHODS AND REGULAR EXPRESSIONS
+============================================================
+
+String.prototype.toLowerCase()
+Definition:
+Returns a lowercase version of a string without changing the original.
+Parameters: none.
+Example:
+console.log("HELLO".toLowerCase()); // "hello"
+
+String.prototype.toUpperCase()
+Definition:
+Returns an uppercase version of a string.
+Parameters: none.
+Example:
+console.log("hello".toUpperCase()); // "HELLO"
+
+String.prototype.trim()
+Definition:
+Removes whitespace from both ends of a string.
+Parameters: none.
+Example:
+console.log("  Ravi  ".trim()); // "Ravi"
+
+String.prototype.split()
+Definition:
+Splits a string into an array using a separator.
+Parameters: separator — text or pattern to split on; limit — optional maximum number of parts.
+Example:
+console.log("red,blue,green".split(",")); // ["red", "blue", "green"]
+
+Array.prototype.join()
+Definition:
+Combines array elements into a string using a separator.
+Parameter: separator — optional text placed between elements.
+Example:
+console.log(["red", "blue"].join(", ")); // "red, blue"
+
+String.prototype.includes()
+Definition:
+Checks whether a string contains a given substring.
+Parameter: searchString — text to find.
+Example:
+console.log("JavaScript".includes("Script")); // true
+
+String.prototype.slice()
+Definition:
+Returns part of a string without changing the original.
+Parameters: start — starting index; end — optional ending index, not included.
+Example:
+console.log("JavaScript".slice(0, 4)); // "Java"
+
+String.prototype.padStart()
+Definition:
+Pads the beginning of a string until it reaches a target length.
+Parameters: targetLength — final minimum length; padString — optional padding text.
+Example:
+console.log("42".padStart(4, "0")); // "0042"
+
+RegExp.prototype.test()
+Definition:
+Checks whether a regular expression matches part of a string.
+Parameter: string to test.
+Example:
+let pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+console.log(pattern.test("a@example.com")); // true
+
+String.prototype.match()
+Definition:
+Returns match information for a regular expression, or null if no match is found.
+Parameter: regular expression.
+Example:
+console.log("Room 123".match(/\d+/)); // matches "123"
+
+============================================================
+5. ARRAY CREATION, ACCESS, AND MUTATING METHODS
+============================================================
+
+Array literal
+Definition:
+Creates an array using square brackets.
+Example:
+let numbers = [10, 20, 30];
+
+Array()
+Definition:
+Creates an array using the Array constructor. One numeric argument creates an array of that length.
+Parameters: array elements, or one length value.
+Example:
+let a = new Array(10, 20, 30);
+console.log(a); // [10, 20, 30]
+
+Array.prototype.push()
+Definition:
+Adds one or more elements to the end of an array and returns the new length.
+Parameters: items to add.
+Example:
+let a = [1, 2];
+a.push(3);
+console.log(a); // [1, 2, 3]
+
+Array.prototype.pop()
+Definition:
+Removes and returns the last element of an array.
+Parameters: none.
+Example:
+let a = [1, 2, 3];
+console.log(a.pop()); // 3
+
+Array.prototype.unshift()
+Definition:
+Adds one or more elements to the beginning of an array and returns the new length.
+Parameters: items to add.
+Example:
+let a = [2, 3];
+a.unshift(1);
+console.log(a); // [1, 2, 3]
+
+Array.prototype.shift()
+Definition:
+Removes and returns the first element of an array.
+Parameters: none.
+Example:
+let a = [1, 2, 3];
+console.log(a.shift()); // 1
+
+Array.prototype.splice()
+Definition:
+Removes, replaces, or inserts elements in the original array; returns removed elements.
+Parameters: start — index to begin; deleteCount — number to remove; item1, ... — optional items to insert.
+Example:
+let a = [10, 20, 30];
+a.splice(1, 1, 25);
+console.log(a); // [10, 25, 30]
+
+Array.prototype.slice()
+Definition:
+Returns a shallow copy of a selected part of an array; does not change the original.
+Parameters: start — starting index; end — optional ending index, not included.
+Example:
+let a = [10, 20, 30, 40];
+console.log(a.slice(1, 3)); // [20, 30]
+
+Array.prototype.concat()
+Definition:
+Combines arrays or values into a new array without changing the original arrays.
+Parameters: arrays or values to append.
+Example:
+console.log([1, 2].concat([3, 4])); // [1, 2, 3, 4]
+
+Array.prototype.sort()
+Definition:
+Sorts an array in place. Provide a comparison function for numeric sorting.
+Parameter: compareFunction — optional function returning a negative, zero, or positive value.
+Example:
+let marks = [75, 92, 68];
+marks.sort((a, b) => b - a);
+console.log(marks); // [92, 75, 68]
+
+Array.prototype.reverse()
+Definition:
+Reverses an array in place.
+Parameters: none.
+Example:
+let a = [1, 2, 3];
+a.reverse();
+console.log(a); // [3, 2, 1]
+
+Array.prototype.fill()
+Definition:
+Fills array elements with one value in place.
+Parameters: value — fill value; start — optional start index; end — optional end index, not included.
+Example:
+console.log([1, 2, 3].fill(0)); // [0, 0, 0]
+
+Array.prototype.copyWithin()
+Definition:
+Copies part of an array to another position in the same array.
+Parameters: target — destination index; start — source start; end — optional source end.
+Example:
+let a = [1, 2, 3, 4];
+a.copyWithin(1, 2);
+console.log(a); // [1, 3, 4, 4]
+
+Array.prototype.toSorted()
+Definition:
+Returns a sorted copy of an array without changing the original (modern JavaScript).
+Parameter: optional comparison function.
+Example:
+let a = [3, 1, 2];
+console.log(a.toSorted((x, y) => x - y)); // [1, 2, 3]
+
+Array.prototype.toReversed()
+Definition:
+Returns a reversed copy without changing the original (modern JavaScript).
+Parameters: none.
+Example:
+console.log([1, 2, 3].toReversed()); // [3, 2, 1]
+
+Array.prototype.toSpliced()
+Definition:
+Returns a modified copy, leaving the original unchanged (modern JavaScript).
+Parameters: same as splice(): start, deleteCount, and optional inserted items.
+Example:
+console.log([1, 2, 3].toSpliced(1, 1, 9)); // [1, 9, 3]
+
+Array.prototype.with()
+Definition:
+Returns a copy with one element replaced at the specified index (modern JavaScript).
+Parameters: index — element position; value — replacement value.
+Example:
+console.log([10, 20, 30].with(1, 99)); // [10, 99, 30]
+
+============================================================
+6. ARRAY ITERATION, SEARCH, AND REDUCTION
+============================================================
+
+Array.prototype.forEach()
+Definition:
+Runs a callback once for each array element. It does not create a new array.
+Parameters: callback(element, index, array); optional thisArg.
+Example:
+[10, 20].forEach((value, index) => console.log(index, value));
+
+Array.prototype.map()
+Definition:
+Creates a new array by transforming each element.
+Parameters: callback(element, index, array); optional thisArg.
+Example:
+console.log([1, 2, 3].map(n => n * 2)); // [2, 4, 6]
+
+Array.prototype.filter()
+Definition:
+Creates a new array containing elements that pass a test.
+Parameters: callback(element, index, array); optional thisArg.
+Example:
+console.log([1, 2, 3, 4].filter(n => n % 2 === 0)); // [2, 4]
+
+Array.prototype.reduce()
+Definition:
+Combines array elements into one accumulated result.
+Parameters: callback(accumulator, currentValue, index, array); initialValue — optional starting accumulator.
+Example:
+console.log([1, 2, 3].reduce((sum, n) => sum + n, 0)); // 6
+
+Array.prototype.find()
+Definition:
+Returns the first element that passes a test, or undefined.
+Parameter: callback(element, index, array).
+Example:
+console.log([4, 7, 9].find(n => n > 5)); // 7
+
+Array.prototype.findIndex()
+Definition:
+Returns the index of the first element that passes a test, or -1.
+Parameter: callback(element, index, array).
+Example:
+console.log([4, 7, 9].findIndex(n => n > 5)); // 1
+
+Array.prototype.some()
+Definition:
+Returns true if at least one element passes a test.
+Parameter: callback(element, index, array).
+Example:
+console.log([1, 3, 4].some(n => n % 2 === 0)); // true
+
+Array.prototype.every()
+Definition:
+Returns true if every element passes a test.
+Parameter: callback(element, index, array).
+Example:
+console.log([2, 4, 6].every(n => n % 2 === 0)); // true
+
+Array.prototype.includes()
+Definition:
+Checks whether an array contains a value.
+Parameters: searchElement — value to find; fromIndex — optional starting index.
+Example:
+console.log([1, 2, 3].includes(2)); // true
+
+Array.prototype.indexOf()
+Definition:
+Returns the first index of a value, or -1 if not found.
+Parameters: searchElement — value to find; fromIndex — optional starting index.
+Example:
+console.log(["a", "b", "c"].indexOf("b")); // 1
+
+Array.from()
+Definition:
+Creates an array from an iterable or array-like value.
+Parameters: source; optional mapFunction.
+Example:
+console.log(Array.from("cat")); // ["c", "a", "t"]
+
+============================================================
+7. OBJECTS, PROPERTIES, AND SYMBOLS
+============================================================
+
+Object.keys()
+Definition:
+Returns an array of an object's own enumerable string property names.
+Parameter: object to inspect.
+Example:
+console.log(Object.keys({ name: "Ravi", age: 20 })); // ["name", "age"]
+
+Object.values()
+Definition:
+Returns an array of an object's own enumerable property values.
+Parameter: object to inspect.
+Example:
+console.log(Object.values({ name: "Ravi", age: 20 })); // ["Ravi", 20]
+
+Object.entries()
+Definition:
+Returns an array of [key, value] pairs for an object's own enumerable properties.
+Parameter: object to inspect.
+Example:
+console.log(Object.entries({ name: "Ravi" })); // [["name", "Ravi"]]
+
+Object.hasOwn()
+Definition:
+Checks whether an object has a property directly on itself, not only through its prototype.
+Parameters: object, propertyKey.
+Example:
+console.log(Object.hasOwn({ name: "Ravi" }, "name")); // true
+
+Object.getOwnPropertySymbols()
+Definition:
+Returns an array of an object's own Symbol property keys.
+Parameter: object to inspect.
+Example:
+let key = Symbol("hidden");
+let obj = { [key]: 123 };
+console.log(Object.getOwnPropertySymbols(obj)); // [Symbol(hidden)]
+
+Symbol()
+Definition:
+Creates a unique Symbol value, often used as a property key.
+Parameter: optional description.
+Example:
+let id = Symbol("id");
+let obj = { [id]: 100 };
+console.log(obj[id]); // 100
+
+Getter (get)
+Definition:
+Defines a method that is called when a property is read.
+Example:
+let person = {
+    firstName: "Ravi",
+    lastName: "Kumar",
+    get fullName() {
+        return this.firstName + " " + this.lastName;
+    }
+};
+console.log(person.fullName);
+
+Setter (set)
+Definition:
+Defines a method that is called when a property is assigned.
+Example:
+let person = {
+    firstName: "Ravi",
+    lastName: "Kumar",
+    set fullName(value) {
+        let parts = value.split(" ");
+        this.firstName = parts[0];
+        this.lastName = parts[1];
+    }
+};
+person.fullName = "Amit Sharma";
+
+for...in
+Definition:
+Loops over an object's enumerable string property keys.
+Parameter: loop variable receives each key.
+Example:
+let obj = { name: "Ravi", age: 20 };
+for (let key in obj) {
+    console.log(key, obj[key]);
+}
+
+============================================================
+8. SET AND MAP
+============================================================
+
+Set()
+Definition:
+Creates a collection of unique values.
+Parameter: optional iterable of initial values.
+Example:
+let values = new Set([1, 2, 2, 3]);
+console.log(values); // Set {1, 2, 3}
+
+Set.prototype.add()
+Definition:
+Adds a value to a Set; duplicates are ignored.
+Parameter: value to add.
+Example:
+let s = new Set();
+s.add("apple");
+
+Set.prototype.has()
+Definition:
+Checks whether a value exists in a Set.
+Parameter: value to check.
+Example:
+console.log(new Set([1, 2]).has(2)); // true
+
+Set.prototype.delete()
+Definition:
+Removes a value from a Set; returns whether it existed.
+Parameter: value to remove.
+Example:
+let s = new Set([1, 2]);
+s.delete(2);
+
+Set.prototype.forEach()
+Definition:
+Runs a callback for each value in a Set.
+Parameters: callback(value, valueAgain, set); optional thisArg.
+Example:
+new Set(["a", "b"]).forEach(value => console.log(value));
+
+Map()
+Definition:
+Creates a key-value collection; keys can be values of any type.
+Parameter: optional iterable of [key, value] pairs.
+Example:
+let marks = new Map([["Ravi", 85]]);
+
+Map.prototype.set()
+Definition:
+Adds or updates a key-value pair in a Map.
+Parameters: key, value.
+Example:
+let marks = new Map();
+marks.set("Ravi", 85);
+
+Map.prototype.get()
+Definition:
+Returns the value associated with a key, or undefined.
+Parameter: key to retrieve.
+Example:
+console.log(new Map([["Ravi", 85]]).get("Ravi")); // 85
+
+Map.prototype.has()
+Definition:
+Checks whether a key exists in a Map.
+Parameter: key to check.
+Example:
+console.log(new Map([["Ravi", 85]]).has("Ravi")); // true
+
+Map.prototype.delete()
+Definition:
+Removes a key-value pair from a Map.
+Parameter: key to remove.
+Example:
+let marks = new Map([["Ravi", 85]]);
+marks.delete("Ravi");
+
+Map.prototype.forEach()
+Definition:
+Runs a callback for each Map entry.
+Parameters: callback(value, key, map); optional thisArg.
+Example:
+new Map([["Ravi", 85]]).forEach((value, key) => console.log(key, value));
+
+Map.prototype.size
+Definition:
+Property giving the number of entries in a Map.
+Example:
+console.log(new Map([["Ravi", 85]]).size); // 1
+
+Set.prototype.size
+Definition:
+Property giving the number of unique values in a Set.
+Example:
+console.log(new Set([1, 2, 2]).size); // 2
+
+============================================================
+9. DATE AND TIME
+============================================================
+
+Date()
+Definition:
+Creates a Date object representing a date and time.
+Example:
+let now = new Date();
+console.log(now);
+
+Date.prototype.getFullYear()
+Definition:
+Returns the four-digit year in local time.
+Parameters: none.
+Example:
+console.log(new Date().getFullYear());
+
+Date.prototype.getMonth()
+Definition:
+Returns the month in local time, from 0 (January) to 11 (December).
+Parameters: none.
+Example:
+console.log(new Date().getMonth() + 1); // 1–12
+
+Date.prototype.getDate()
+Definition:
+Returns the day of the month in local time, from 1 to 31.
+Parameters: none.
+Example:
+console.log(new Date().getDate());
+
+Date.prototype.getDay()
+Definition:
+Returns the weekday in local time, from 0 (Sunday) to 6 (Saturday).
+Parameters: none.
+Example:
+console.log(new Date().getDay());
+
+Date.prototype.toLocaleTimeString()
+Definition:
+Returns a locale-formatted time string.
+Parameters: optional locales and options.
+Example:
+console.log(new Date().toLocaleTimeString());
+
+Date.prototype.toISOString()
+Definition:
+Returns a date-time string in ISO 8601 format, in UTC.
+Parameters: none.
+Example:
+console.log(new Date().toISOString());
+
+============================================================
+10. BROWSER BOM AND DOM
+============================================================
+
+window.alert()
+Definition:
+Displays a browser alert dialog.
+Parameter: message.
+Example:
+window.alert("Hello!");
+
+window.prompt()
+Definition:
+Asks the user for text input and returns a string or null.
+Parameter: message; optional default value.
+Example:
+let name = window.prompt("Name?");
+
+location.href
+Definition:
+Property containing the current URL; assigning a URL navigates the browser.
+Example:
+location.href = "https://example.com";
+
+history.back()
+Definition:
+Navigates to the previous page in the browser history, if available.
+Parameters: none.
+Example:
+history.back();
+
+navigator.userAgent
+Definition:
+Property containing the browser's user-agent string.
+Example:
+console.log(navigator.userAgent);
+
+navigator.language
+Definition:
+Property containing the browser's preferred language.
+Example:
+console.log(navigator.language);
+
+navigator.onLine
+Definition:
+Boolean property indicating the browser's online status estimate.
+Example:
+console.log(navigator.onLine);
+
+screen.width / screen.height
+Definition:
+Properties giving the screen's width and height in pixels.
+Example:
+console.log(screen.width, screen.height);
+
+document.getElementById()
+Definition:
+Finds an element by its id; returns the element or null.
+Parameter: id — exact id string.
+Example:
+let heading = document.getElementById("heading");
+
+document.createElement()
+Definition:
+Creates a new HTML element that is not added to the page until inserted.
+Parameter: tagName — element name such as "p" or "div".
+Example:
+let p = document.createElement("p");
+
+Node.appendChild()
+Definition:
+Adds a node as the last child of another node.
+Parameter: node to append.
+Example:
+document.body.appendChild(document.createElement("p"));
+
+Element.addEventListener()
+Definition:
+Registers a function to run when a specified event occurs.
+Parameters: eventType — such as "click"; listener — callback function; options — optional settings.
+Example:
+document.getElementById("btn").addEventListener("click", function () {
+    console.log("Clicked");
+});
+
+HTMLTableElement.insertRow()
+Definition:
+Creates and inserts a table row.
+Parameter: optional index at which to insert the row.
+Example:
+let row = document.getElementById("table").insertRow();
+
+HTMLTableRowElement.insertCell()
+Definition:
+Creates and inserts a cell into a table row.
+Parameter: optional cell index.
+Example:
+let cell = row.insertCell(0);
+cell.textContent = "Ravi";
+
+textContent
+Definition:
+Property for reading or setting an element's text content.
+Example:
+document.getElementById("message").textContent = "Updated text";
+
+innerHTML
+Definition:
+Property for reading or setting an element's HTML markup inside the element.
+Example:
+document.getElementById("box").innerHTML = "<strong>Hello</strong>";
+
+outerHTML
+Definition:
+Property for reading or replacing the element itself, including its markup.
+Example:
+document.getElementById("box").outerHTML = "<p id='box'>Replaced</p>";
+
+Element.style
+Definition:
+Property used to read or set an element's inline CSS styles.
+Example:
+document.getElementById("message").style.color = "blue";
+
+============================================================
+11. WEB STORAGE AND COOKIES
+============================================================
+
+localStorage.setItem()
+Definition:
+Stores a value under a key in browser local storage. Keys and values are stored as strings.
+Parameters: key, value.
+Example:
+localStorage.setItem("studentName", "Ravi");
+
+localStorage.getItem()
+Definition:
+Retrieves a stored value by key; returns null if missing.
+Parameter: key.
+Example:
+let name = localStorage.getItem("studentName");
+
+localStorage.removeItem()
+Definition:
+Removes a stored entry by key.
+Parameter: key.
+Example:
+localStorage.removeItem("studentName");
+
+localStorage.clear()
+Definition:
+Removes all entries from the current website's local storage.
+Parameters: none.
+Example:
+localStorage.clear();
+
+document.cookie
+Definition:
+Property used to read accessible cookies or set a cookie using a string. Cookie attributes control path, expiry, and security.
+Example:
+document.cookie = "username=Ravi; max-age=3600; path=/; SameSite=Lax";
+console.log(document.cookie);
+document.cookie = "username=; max-age=0; path=/; SameSite=Lax";
+
+============================================================
+12. CLASSES AND INHERITANCE
+============================================================
+
+constructor()
+Definition:
+Special class method called when a new instance is created.
+Parameters: defined by the class.
+Example:
+class Person {
+    constructor(name) {
+        this.name = name;
+    }
+}
+let p = new Person("Ravi");
+
+Instance method
+Definition:
+A function defined on a class prototype and called through an instance.
+Example:
+class Person {
+    constructor(name) {
+        this.name = name;
+    }
+    greet() {
+        return "Hello " + this.name;
+    }
+}
+console.log(new Person("Ravi").greet());
+
+static method
+Definition:
+A method called on the class itself, not on an instance.
+Example:
+class Calculator {
+    static add(a, b) {
+        return a + b;
+    }
+}
+console.log(Calculator.add(2, 3));
+
+extends
+Definition:
+Class keyword used to create a subclass that inherits from another class.
+Example:
+class Student extends Person {}
+
+super()
+Definition:
+Calls the parent class constructor from a subclass constructor.
+Example:
+class Student extends Person {
+    constructor(name, marks) {
+        super(name);
+        this.marks = marks;
+    }
+}
+
+============================================================
+13. ERROR HANDLING
+============================================================
+
+Error()
+Definition:
+Creates an Error object representing an error.
+Parameters: message — optional description.
+Example:
+let error = new Error("Invalid input");
+console.log(error.message);
+
+throw
+Definition:
+Stops normal execution and throws a value or error to be handled by a catch block.
+Example:
+throw new Error("Something went wrong");
+
+try...catch
+Definition:
+Runs code in try and handles a thrown error in catch.
+Parameters: catch receives the thrown value.
+Example:
+try {
+    throw new Error("Failed");
+} catch (error) {
+    console.log(error.name);
+    console.log(error.message);
+    console.log(error.stack);
+}
+
+Custom Error class
+Definition:
+A class extending Error to create a named application-specific error.
+Example:
+class ValidationError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = "ValidationError";
+    }
+}
+try {
+    throw new ValidationError("Invalid email");
+} catch (error) {
+    console.log(error.stack);
+}
+
+============================================================
+14. COMMON OPERATORS AND CONTROL STRUCTURES
+============================================================
+
+if...else
+Definition:
+Runs one block when a condition is true and another when it is false.
+Example:
+if (age >= 18) {
+    console.log("Adult");
+} else {
+    console.log("Minor");
+}
+
+switch
+Definition:
+Selects a code branch based on a matching case.
+Example:
+switch (operator) {
+    case "+":
+        console.log(a + b);
+        break;
+    default:
+        console.log("Unknown operator");
+}
+
+for loop
+Definition:
+Repeats a block while its loop condition remains true.
+Example:
+for (let i = 0; i < 3; i++) {
+    console.log(i);
+}
+
+while loop
+Definition:
+Repeats a block while a condition is true.
+Example:
+let i = 0;
+while (i < 3) {
+    console.log(i);
+    i++;
+}
+
+for...of
+Definition:
+Iterates over values of an iterable such as an array or string.
+Example:
+for (let value of [10, 20, 30]) {
+    console.log(value);
+}
+
+break
+Definition:
+Immediately exits the nearest loop or switch.
+Example:
+for (let i = 0; i < 10; i++) {
+    if (i === 3) break;
+}
+
+continue
+Definition:
+Skips the current loop iteration and proceeds to the next one.
+Example:
+for (let i = 0; i < 5; i++) {
+    if (i === 2) continue;
+    console.log(i);
+}
+
+% (remainder operator)
+Definition:
+Returns the remainder after division; commonly used to test even and odd numbers.
+Example:
+console.log(8 % 2); // 0
+
+** (exponentiation operator)
+Definition:
+Raises the left operand to the power of the right operand.
+Example:
+console.log(2 ** 3); // 8
+
+============================================================
+15. EXAM NOTES
+============================================================
+
+1. Methods are functions associated with objects. For example, array.map() is a method.
+2. map() returns a transformed array; filter() returns matching elements; reduce() returns one accumulated result.
+3. push(), pop(), shift(), unshift(), splice(), sort(), and reverse() modify the original array.
+4. slice() and concat() return new arrays and do not modify the original array.
+5. Set stores unique values. Map stores key-value pairs and permits keys of different types.
+6. localStorage persists across browser sessions. It stores values as strings.
+7. prompt(), alert(), document, location, history, navigator, screen, and localStorage require a browser environment.
+8. Math.random() is suitable for simple demonstrations, not for security-sensitive OTPs. Use crypto.getRandomValues() for security-sensitive random values.
+9. typeof null returns "object" for historical reasons.
+10. getMonth() returns values from 0 to 11, so add 1 for a conventional month number.
+11. A getter is read like a property (person.fullName), not called like a method (person.fullName()).
+12. An assignment such as student = null removes that variable's reference; it does not directly force garbage collection.
